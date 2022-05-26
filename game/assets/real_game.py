@@ -1,0 +1,1 @@
+#not active as i am currently learning pygame via a tutorial. See the game i made on /pygame-tutorial/game/py
