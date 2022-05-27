@@ -1,1 +1,1 @@
-tutorial i am following is this (one)[https://www.youtube.com/watch?v=AY9MnQ4x3zk&list=WL&index=1&t=3535s]
+tutorial i am following is this [one](https://www.youtube.com/watch?v=AY9MnQ4x3zk&list=WL&index=1&t=3535s)
