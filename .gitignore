@@ -1,3 +1,5 @@
 /gamevenv
 *.env
 /__pycache__*
+/pygame-docs-fork/*
+/pygame-docs-fork
