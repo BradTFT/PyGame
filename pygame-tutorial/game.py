@@ -1,6 +1,7 @@
 import pygame
 from sys import exit
 pygame.init()
+#!view docs: python -m pygame.docs
 #!import/initiate pygame
 
 #!display surface(window)
