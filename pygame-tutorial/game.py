@@ -19,13 +19,13 @@ test_font = pygame.font.Font('pygame asset zip/font/Pixeltype.ttf', 50)
 #!import surfaces
 sky_surface = pygame.image.load('pygame asset zip/graphics/Sky.png').convert()
 ground_surface = pygame.image.load('pygame asset zip/graphics/ground.png').convert()
-text_surface = test_font.render('text',False, 'Black' ).convert()
+text_surface = test_font.render('text',False, 'Black').convert()
 #                              text^    ^AA     ^color
 
 snail_surface = pygame.image.load('pygame asset zip/graphics/snail/snail1.png').convert_alpha()
 snail_x = 600
-
 snail_rect = snail_surface.get_rect(midbottom = (150,300))
+
 #! convert alpha is == to png (removes white and black bgrd)
 player_surface = pygame.image.load('pygame asset zip/graphics/Player/player_walk_1.png').convert_alpha()
 
@@ -43,7 +43,9 @@ while True:
             pygame.quit()
             #sys exit to stop pygame error (video system not initalized)
             exit()
-
+        #constantly prints mouse pos
+        if event.type == pygame.MOUSEMOTION:#other params are buttonup or buttondown
+            pass
     #!code to display assets/objects
 
 
@@ -54,11 +56,29 @@ while True:
     #!blit with the rectangle
     screen.blit(player_surface,player_rect)
     #moves player same way as line 56
-    player_rect.left += 1
+    #player_rect.left += 1
+
+
     #!animated:
     #every second updates x position by 1
     screen.blit(snail_surface,snail_rect)
-    snail_rect.left += 1
+    snail_rect.x -= 4
+    if snail_rect.right <= 0:
+        snail_rect.left = 800
+
+    #!collisions
+    #if player_rect.colliderect(snail_rect):
+    #    print('collided')
+    
+    #!collidepoint is for cursor collision
+    
+
+    #!get mouse pos
+    mouse_pos = pygame.mouse.get_pos()
+    if player_rect.collidepoint((mouse_pos)):
+        #shows tuple of mouse button pressed
+        print(pygame.mouse.get_pressed())
+
 
     #if snail X pos gets further than coord -100 it returns to coord 800
     '''
