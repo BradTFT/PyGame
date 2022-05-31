@@ -21,6 +21,7 @@ sky_surface = pygame.image.load('pygame asset zip/graphics/Sky.png').convert()
 ground_surface = pygame.image.load('pygame asset zip/graphics/ground.png').convert()
 text_surface = test_font.render('text',False, 'Black').convert()
 #                              text^    ^AA     ^color
+text_rect = text_surface.get_rect(center = (400,50))
 
 snail_surface = pygame.image.load('pygame asset zip/graphics/snail/snail1.png').convert_alpha()
 snail_x = 600
@@ -30,9 +31,15 @@ snail_rect = snail_surface.get_rect(midbottom = (150,300))
 player_surface = pygame.image.load('pygame asset zip/graphics/Player/player_walk_1.png').convert_alpha()
 
 #!create a rectangle:
-player_rect = player_surface.get_rect(midbottom = (80,300))
+player_rect = player_surface.get_rect(center = (80,300))
 #marks which point of the rectange needs to be touching whatever coordinate (idk a better way to explain it)
-#rects will be easier with classes 
+ 
+#!keyboard input
+
+#!gravity:
+player_gravity = 0
+
+
 
 #draw all element
 #runs window forever
@@ -46,12 +53,30 @@ while True:
         #constantly prints mouse pos
         if event.type == pygame.MOUSEMOTION:#other params are buttonup or buttondown
             pass
+        #!keyboard input:
+        #keydown is when pressed keyup is when released
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                player_gravity = -20
+
+
+    #gravity in loop:
+    player_gravity += 1
+    player_rect.y += player_gravity
+    
+    #if player_rect.bottom >= 300:
+        #player_rect = 300
+    if player_rect.bottom > 220:
+        player_rect.y = 220
+
+
+
     #!code to display assets/objects
-
-
     screen.blit(sky_surface,(0,0))
     screen.blit(ground_surface,(0,300))
-    screen.blit(text_surface,(350,50))
+    pygame.draw.rect(screen, 'Pink', text_rect, 10)
+    pygame.draw.rect(screen, 'Pink', text_rect)
+    screen.blit(text_surface,text_rect)
 
     #!blit with the rectangle
     screen.blit(player_surface,player_rect)
